@@ -22,7 +22,7 @@ def train_model(config_file):
         shear_range = config['img_augment']['shear_range']
         zoom_range = config['img_augment']['zoom_range']
         horizontal_flip = config['img_augment']['horizontal_flip']
-        vertifal_flip = config['img_augment']['vertical_flip']
+        vertical_flip = config['img_augment']['vertical_flip']
         class_mode = config['img_augment']['class_mode']
         batch = config['img_augment']['batch_size']
         loss = config['model']['loss']
@@ -45,25 +45,26 @@ def train_model(config_file):
         
         mod.compile(loss = loss, optimizer = optimizer, metrics = metrics)
 
-        train_gen = ImageDataGenerator(rescale = rescale, 
-                                       shear_range = shear_range, 
-                                       zoom_range = zoom_range, 
-                                       horizontal_flip = horizontal_flip, 
-                                       vertical_flip = vertifal_flip,
+        train_gen = ImageDataGenerator(rescale = rescale,
+                                       shear_range = shear_range,
+                                       zoom_range = zoom_range,
+                                       horizontal_flip = horizontal_flip,
+                                       vertical_flip = vertical_flip,
                                        rotation_range = 90)
+        
         test_gen = ImageDataGenerator(rescale = rescale)
 
         train_set = train_gen.flow_from_directory(train_set,
                                                   target_size = img_size,
                                                   batch_size = batch,
                                                   class_mode = class_mode)
-        test_set = test_gen.flow_from_directory(test_set, 
+        
+        test_set = test_gen.flow_from_directory(test_set,
                                                 target_size=img_size,
                                                 batch_size = batch,
                                                 class_mode = class_mode)
 
-        history = mod.fit(train_set,
-                          epochs = epochs,
+        history = mod.fit(train_set,epochs = epochs,
                           validation_data = test_set,
                           steps_per_epoch = len(train_set),
                           validation_steps = len(test_set)) 

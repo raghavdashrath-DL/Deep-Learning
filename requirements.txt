@@ -9,3 +9,4 @@ tensorflow
 joblib
 PyYaml
 streamlit
+keras_preprocessing
