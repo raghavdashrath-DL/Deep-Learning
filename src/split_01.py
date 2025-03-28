@@ -19,8 +19,8 @@ def train_and_test(config_file):
     os.makedirs(os.path.join(dest, 'test'), exist_ok=True)
    
     # Brain tumor classes
-    classes = ['no_tumor', 'pituitary_tumor', 'meningioma_tumor', 'glioma_tumor']
-   
+    # classes = ['no_tumor', 'pituitary_tumor', 'meningioma_tumor', 'glioma_tumor']
+    classes = ['glioma_tumor', 'meningioma_tumor', 'no_tumor', 'pituitary_tumor']
     # Create class directories in train and test
     for class_name in classes:
         os.makedirs(os.path.join(dest, 'train', class_name), exist_ok=True)
