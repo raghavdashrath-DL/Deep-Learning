@@ -3,5 +3,13 @@ name : mri
 on:
   push:
     branches: ["main"]
-
     
+    jobs:
+      build:
+        runs-on: ubuntu-latestc #self-hosted
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v2
+
+          - name:  Set up Python 3.11
+            uses: action/setup-python@v3
